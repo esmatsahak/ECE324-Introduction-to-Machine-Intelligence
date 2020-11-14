@@ -1,7 +1,7 @@
 %Converts audio samples into mel spectrograms
 
-myFolder = '';
-newFolder = '';
+myFolder = 'C:\Users\Maxx\Desktop\Y3T1\ECE324_Intro_to_ML\Project\Mandarin - Truncated\Personal - 148\Amy Chinese';
+newFolder = 'C:\Users\Maxx\Desktop\Y3T1\ECE324_Intro_to_ML\Project\Mandarin - Spectrogram\Personal - 148\Amy Chinese';
 
 imgFolder = strcat(newFolder,'\Spectrogram\');
 dataFolder = strcat(newFolder,'\Data\');
@@ -31,12 +31,12 @@ for f = 1 : length(theFiles)
     x = x(1:2.5*fs);
     
     %produce mel spectrogram
-    S = melSpectrogram(x,target_fs,'FrequencyRange',[20,8000]);
+    S = melSpectrogram(x,fs,'FrequencyRange',[20,8000]);
     [bands, frames] = size(S);
     fprintf('number of bands: %3d, number of frames: %4d\n', bands, frames);
     
     % Write new audio to new directory location
-    melSpectrogram(x,target_fs,'FrequencyRange',[20,8000]);
+    melSpectrogram(x,fs,'FrequencyRange',[20,8000]);
     saveas(gcf, imgFile);
     writematrix(S, dataFile);
 end
