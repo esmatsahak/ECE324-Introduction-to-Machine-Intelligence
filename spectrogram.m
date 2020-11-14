@@ -28,15 +28,15 @@ for f = 1 : length(theFiles)
     
     % Read audio file
     [x, fs] = audioread(fullFileName);
-    %x = x(1:3*fs);
+    x = x(1:2.5*fs);
     
     %produce mel spectrogram
-    S = melSpectrogram(x,fs);
+    S = melSpectrogram(x,target_fs,'FrequencyRange',[20,8000]);
     [bands, frames] = size(S);
     fprintf('number of bands: %3d, number of frames: %4d\n', bands, frames);
     
     % Write new audio to new directory location
-    melSpectrogram(x,fs);
+    melSpectrogram(x,target_fs,'FrequencyRange',[20,8000]);
     saveas(gcf, imgFile);
     writematrix(S, dataFile);
 end
